@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+public class Loja {
+	
+	private Produto[] estoque;
+	private int quantidadeDeProdutos;
+	private String repetir;
+	private Scanner scanner;
+	private double sold;
+	
+	public Loja() {
+		estoque = new Produto[5];
+		quantidadeDeProdutos = 0;
+		repetir = "Não";
+		scanner = new Scanner(System.in);
+		sold = 0;
+		
+	}
+	
+	
+	private Produto[] copyForNewArray(Produto[] newArray){
+		
+			for(int i = 0; i < estoque.length; i++){
+			
+				newArray[i] = estoque[i];
+			
+			}
+			
+			return newArray;
+		
+	}
+	
+	private int searchProduct(String product) {
+		
+		for(int i = 0; i < estoque.length; i++){
+			
+			if(estoque[i].getNome().equals(product)){
+				return i+1;
+			}
+			
+		}
+		
+		return 0;
+		
+	}
+	
+	public void cadastra() {
+		
+		System.out.println("= = = = Cadastro de Produtos = = = = ");
+		
+		do {
+			
+		if (quantidadeDeProdutos == estoque.length) { 
+			     Produto[] newArray = new Produto[quantidadeDeProdutos + 5];
+			     estoque = copyForNewArray(newArray);
+			}
+		
+		System.out.print("Digite o nome do produto: ");
+		String nome = scanner.nextLine();
+				
+		System.out.print("Digite o preco unitario do produto: ");
+		double preco = scanner.nextDouble();
+		scanner.nextLine();
+		
+		System.out.print("Digite o tipo do produto: ");
+		String tipo = scanner.nextLine();
+		
+		System.out.print("Deseja cadastrar outro produto? ​");
+		repetir = scanner.nextLine();
+		
+		estoque[quantidadeDeProdutos++] = new Produto(nome, preco, tipo);
+		
+		} while(!repetir.equals("Não"));
+		
+	}
+	
+	public void venda() {
+		
+		System.out.println("==== Venda de Produtos ====\nDigite o nome do produto: ");
+		String searchName = scanner.nextLine();
+		
+		if(searchProduct(searchName) != 0){
+			
+			estoque.
+			
+		}
+		
+	}
+
+	
+}
