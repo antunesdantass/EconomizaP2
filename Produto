@@ -1,0 +1,26 @@
+public class Produto {
+
+		private String nomeProduto;
+		private double precoProduto;
+		private String tipoProduto;
+		
+		public Produto(String nome, double preco, String tipo) {
+			
+			this.nomeProduto = nome;
+			this.precoProduto = preco;
+			this.tipoProduto = tipo;
+			
+		}
+		
+		public String getNome() {
+			return nomeProduto;
+		}
+		
+		public double getPreco() {
+			return precoProduto;
+		}
+		
+		public String getTipo() {
+			return tipoProduto;
+		}
+}
