@@ -1,0 +1,10 @@
+public class Main{
+
+  public static void main(String[] args){
+    
+    MenuPrincipal execute = new MenuPrincipal();
+    execute.menu; //mudar o nome do método em MenuPrincipal.
+    
+  }
+
+}
