@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class MenuPrincipal {
+	
+	public static Scanner scanner = new Scanner(System.in);
+		
+	public static void main(String[] args) {
+		
+		int escolha;	
+		Loja novaLoja = new Loja();
+		
+		do {
+			
+			System.out.println("= = = = Bem­vindo(a) ao EconomizaP2 = = = =");
+			System.out.println("Digite a opção desejada: ");
+			System.out.println("1 ­ Cadastrar um Produto\n2 ­ Vender um Produto\n3 ­ Imprimir Balanço\n4 ­ Sair\n");
+			System.out.print("Opção: ");
+			escolha = scanner.nextInt();
+			
+			switch(escolha) {
+			
+			case 1: //cadastra um novo produto
+				
+				novaLoja.cadastra();
+				break;
+				
+			case 2: // vende um produto
+				
+				novaLoja.venda();
+				break;
+				
+			case 3: // imprime balanco
+				break;
+				
+			case 4: // termina a execucao
+				
+				break;
+				
+			default:
+				
+				System.out.println("Você digitou uma opção errada");
+				break;
+			}
+			
+			
+		} while(escolha != 4);
+}
+
+}
