@@ -23,4 +23,12 @@ public class Produto {
 		public String getTipo() {
 			return tipoProduto;
 		}
+		
+		public String toString() {
+			
+			String saida = getNome() + " (" + getTipo() + "). R$ " + String.format("%.2f", getPreco());
+			
+			return saida;
+			
+		}
 }
