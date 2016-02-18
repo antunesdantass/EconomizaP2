@@ -6,14 +6,14 @@ public class Loja {
 	private int quantidadeDeProdutos;
 	private String repetir;
 	private Scanner scanner;
-	private double sold;
+	private double totalSold;
 	
 	public Loja() {
-		estoque = new Produto[5];
+		estoque = new Produto[10];
 		quantidadeDeProdutos = 0;
 		repetir = "Não";
 		scanner = new Scanner(System.in);
-		sold = 0;
+		totalSold = 0;
 		
 	}
 	
@@ -32,7 +32,7 @@ public class Loja {
 	
 	private int searchProduct(String product) {
 		
-		for(int i = 0; i < estoque.length; i++){
+		for(int i = 0; i < quantidadeDeProdutos; i++){
 			
 			if(estoque[i].getNome().equals(product)){
 				return i+1;
@@ -65,8 +65,11 @@ public class Loja {
 		System.out.print("Digite o tipo do produto: ");
 		String tipo = scanner.nextLine();
 		
+		System.out.println("\n" + nome + "cadastrado com sucesso.\n");
+		
 		System.out.print("Deseja cadastrar outro produto? ​");
 		repetir = scanner.nextLine();
+		System.out.println("");
 		
 		estoque[quantidadeDeProdutos++] = new Produto(nome, preco, tipo);
 		
@@ -76,16 +79,61 @@ public class Loja {
 	
 	public void venda() {
 		
-		System.out.println("==== Venda de Produtos ====\nDigite o nome do produto: ");
-		String searchName = scanner.nextLine();
+		int productId;
+		int desiredQtd;
+		String repeat;
+		repeat = "Não";
 		
-		if(searchProduct(searchName) != 0){
+		System.out.print("==== Venda de Produtos ====");
+		
+		
+		do{
 			
-			estoque.
+		System.out.print("\nDigite o nome do produto: ");
+		String searchName = scanner.nextLine();
+		productId = searchProduct(searchName);
+		
+		if(productId != 0){
 			
+			System.out.println("==> " + estoque[productId - 1]);
+			
+			System.out.print("Digite a quantidade que deseja vender: ");
+			desiredQtd = scanner.nextInt();
+			scanner.nextLine();
+			
+			totalSold = totalSold + estoque[productId -1].getPreco() * desiredQtd;
+				
+			
+			
+		}else{
+			
+			System.out.println(searchName + "não cadatrada no sistema");
+						
 		}
 		
+		System.out.print("Deseja vender outro produto? ");
+		repeat = scanner.nextLine();
+		
+		
+		}while(!repeat.equals("Não"));
+		
 	}
+	
+	public void balanco(){
+		
+		System.out.println("= = = = Impressao de Balanco = = = =\nProdutos cadastrados:");
+		
+		
+		for(int i = 0; i < quantidadeDeProdutos; i++){
+			
+			System.out.println("   " + (i+1) + ") " + estoque[i]);
+			
+		} 
+		
+		System.out.println("Total arrecadado em vendas: R$ " + totalSold);
+	}
+	
+	
 
 	
 }
