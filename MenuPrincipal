@@ -30,6 +30,9 @@ public class MenuPrincipal {
 				break;
 				
 			case 3: // imprime balanco
+				
+				novaLoja.balanco();
+				
 				break;
 				
 			case 4: // termina a execucao
