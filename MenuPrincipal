@@ -2,12 +2,19 @@ import java.util.Scanner;
 
 public class MenuPrincipal {
 	
-	private static Scanner scanner = new Scanner(System.in);
+	private Mercado mercado;
+	private Scanner scanner;
+	private int escolha;
+	
+	public MenuPrincipal() {
+	
+		scanner = new Scanner(System.in);
+		mercado = new Mercado();
+		escolha = 0;
 		
-	public static void main(String[] args) {
-		
-		int escolha;	
-		Loja novaLoja = new Loja();
+	}
+	
+	public void Menu() {
 		
 		do {
 			
@@ -15,24 +22,26 @@ public class MenuPrincipal {
 			System.out.println("Digite a opção desejada: ");
 			System.out.println("1 ­ Cadastrar um Produto\n2 ­ Vender um Produto\n3 ­ Imprimir Balanço\n4 ­ Sair\n");
 			System.out.print("Opção: ");
+			
 			escolha = scanner.nextInt();
+			
+			System.out.println("");
 			
 			switch(escolha) {
 			
 			case 1: //cadastra um novo produto
 				
-				novaLoja.cadastra();
+				mercado.cadastramento();
 				break;
 				
 			case 2: // vende um produto
 				
-				novaLoja.venda();
+				mercado.venda();
 				break;
 				
 			case 3: // imprime balanco
 				
-				novaLoja.balanco();
-				
+				mercado.balanco();
 				break;
 				
 			case 4: // termina a execucao
@@ -47,6 +56,6 @@ public class MenuPrincipal {
 			
 			
 		} while(escolha != 4);
-}
+	}
 
 }
