@@ -1,0 +1,68 @@
+
+public class Estoque {
+
+	private Produto[] estoque;
+	private int quantidadeDeProdutos;
+	
+	public Estoque() {
+		
+		this.estoque = new Produto[10];
+		this.quantidadeDeProdutos = 0;
+		
+	}
+
+	
+	private Produto[] aumentaArray(Produto[] novoArray){
+		
+		for(int i = 0; i < estoque.length; i++){
+		
+			novoArray[i] = estoque[i];
+		
+			}
+	
+		return novoArray;
+		
+	}
+	
+	public Produto getProdutoDoEstoque(int i){
+		
+		return estoque[i];
+		
+	}
+	
+	public int getQuantidadeDeProdutos(){
+		
+		return quantidadeDeProdutos;
+		
+	}
+	
+	public int procuraProduto(String nomeDoProduto){
+		
+		for(int i = 0; i < quantidadeDeProdutos; i++){
+			
+			if(estoque[i].getNome().equals(nomeDoProduto)){
+				
+				return i;
+				
+				}
+		}
+		
+		return -1;
+		
+	}
+		
+	public void cadastra (String nome, double preco, String tipo, int qtdEstoque){
+		
+		if (quantidadeDeProdutos == estoque.length) {
+			
+		     Produto[] novoArray = new Produto[quantidadeDeProdutos + 1];
+		     estoque = aumentaArray(novoArray);
+		
+		}
+			
+		estoque[quantidadeDeProdutos++] = new Produto(nome, preco, tipo, qtdEstoque);
+			
+		}
+	
+		
+}
