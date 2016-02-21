@@ -1,0 +1,131 @@
+import java.util.Scanner;
+
+public class Mercado {
+	
+	private Scanner scanner;
+	private Estoque estoque;
+	private double totalArrecadado;
+	
+	public Mercado() {
+	
+		scanner = new Scanner(System.in);
+		estoque = new Estoque();
+		totalArrecadado = 0;
+		
+	}
+
+	public void cadastramento() {
+		
+		String repetir;
+		repetir = "Não";
+		
+		System.out.println("= = = = Cadastro de Produtos = = = = ");
+		
+		do {
+			
+			System.out.print("Digite o nome do produto: ");
+			String nome = scanner.nextLine();
+					
+			System.out.print("Digite o preco unitario do produto: ");
+			double preco = scanner.nextDouble();
+			scanner.nextLine();
+			
+			System.out.print("Digite o tipo do produto: ");
+			String tipo = scanner.nextLine();
+			
+			System.out.print("Digite a quantidade no estoque: ");
+			int qtdEstoque = scanner.nextInt();
+			scanner.nextLine();
+			
+			System.out.println(qtdEstoque + " " + nome + "(s)" + " cadastrado(s) com sucesso!\n");
+			
+			estoque.cadastra(nome, preco, tipo, qtdEstoque);
+			
+			System.out.print("Deseja cadastrar outro produto? ​");
+			repetir = scanner.nextLine();
+			System.out.println("");
+			
+		} while(!repetir.equals("Não"));
+		
+	}
+	
+	public void venda(){
+		
+		int identificadorDoProduto;
+		int numeroDeVendas;
+		String repetir;
+		identificadorDoProduto = 0;
+		numeroDeVendas = 0;
+		repetir = "Não";
+		
+		System.out.println("==== Venda de Produtos ====\n");
+		
+		do{
+			
+			System.out.print("Digite o nome do produto: ");
+			String nomeDoProduto = scanner.nextLine();
+		
+			identificadorDoProduto = estoque.procuraProduto(nomeDoProduto);
+			
+			if(identificadorDoProduto != -1){
+				
+				Produto produto = estoque.getProdutoDoEstoque(identificadorDoProduto);
+				
+				System.out.println("==> " + produto);
+				
+				System.out.println("");
+				
+				System.out.print("Digite a quantidade que deseja vender: ");
+				numeroDeVendas = scanner.nextInt();
+				scanner.nextLine();
+				
+				if (numeroDeVendas <= produto.getQuantidadeEmEstoque()){
+					
+					totalArrecadado = totalArrecadado + produto.getPreco() * numeroDeVendas;
+					produto.setQuantidadeEmEstoque(numeroDeVendas);
+					
+					System.out.println("Total arrecadado: R$ " + String.format("%.2f", totalArrecadado));
+					
+				}else{
+					
+					System.out.println("Não é possível vender pois não há " + nomeDoProduto + " suficiente.");
+					
+				}
+					
+			} else{
+				
+				System.out.println("==> " + nomeDoProduto + " não cadastrado(a) no sistema.");
+				
+			}
+			
+			System.out.print("Deseja vender outro produto? ");
+			repetir = scanner.nextLine();
+			System.out.println("");
+		
+		} while(!repetir.equals("Não"));
+		
+	}
+	
+	public void balanco() {
+		
+		double podeArrecadar;
+		podeArrecadar = 0;
+		
+		System.out.println("= = = = Impressao de Balanco = = = =\nProdutos cadastrados:");
+		
+		
+		for(int i = 0; i < estoque.getQuantidadeDeProdutos(); i++){
+			
+			Produto produto = estoque.getProdutoDoEstoque(i);
+			
+			System.out.println("    " + (i+1) + ") " + produto);
+			
+			podeArrecadar = podeArrecadar + produto.getPreco() * produto.getQuantidadeEmEstoque();
+			
+		} 
+		
+		System.out.println("\nTotal arrecadado em vendas: R$ " + String.format("%.2f", totalArrecadado));
+		System.out.println("Total que pode ser arrecadado: R$ " + String.format("%.2f", podeArrecadar));
+	}
+		
+}
