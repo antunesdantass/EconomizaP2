@@ -1,0 +1,11 @@
+public class Execucao {
+	
+	public static void main(String[] args){
+		
+		MenuPrincipal EconomizaP2 = new MenuPrincipal();
+		
+		EconomizaP2.Menu();
+		
+	}
+
+}
